@@ -23,11 +23,15 @@ If you find any bugs or have suggestions, add them as issues in github. Feel fre
 
 ## Example of differences between branches range ##
 
+```
 TfsLamp -server http://myserver:8080/tfs/dev -username mydomain\user -password mypassword -fb "$/My Project Collection/branches/SourceBranch" -tb "$/My Project Collection/branches/SourceBranch" -outputfile C:\temp\output.html
+```
 
 ## Example of changeset range ##
 
+```
 TfsLamp -server http://myserver:8080/tfs/dev -username mydomain\user -password mypassword -fb "$/My Project Collection/branches/SomeBranch" -fc 8963 -tc 9914 -o C:\temp\output.html
+```
 
 ## Thanks ##
 
