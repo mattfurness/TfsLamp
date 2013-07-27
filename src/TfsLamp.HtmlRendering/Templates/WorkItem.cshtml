@@ -1,0 +1,25 @@
+﻿@using System.Linq
+@inherits Westwind.RazorHosting.RazorTemplateFolderHost<TfsLamp.HtmlRendering.ViewModel.WorkItemViewModel>
+
+<li><a href="@Model.WorkItemThatWasCommittedAgainst.Url">@Model.WorkItemThatWasCommittedAgainst.Id</a>
+<span>@Model.WorkItemThatWasCommittedAgainst.Title</span></li>
+                      
+@if (Model.Children.Any())
+{
+    <li><ul class="workItems">
+        @foreach (var child in Model.Children)
+        {
+            @RenderPartial("~/WorkItem.cshtml", child)
+        }
+    </ul></li>
+}
+                      
+@if (Model.DirectlyAssociatedChangesets.Any())
+{
+    <li><ul class="workItemChangesets"><li><span>Directly associated changesets: </span>
+        @foreach (var changeset in Model.DirectlyAssociatedChangesets)
+        {
+            <a href="#changeset@(changeset.Id)">@changeset.Id</a>
+        }
+    </li></ul></li>
+}

@@ -1,0 +1,82 @@
+﻿@inherits Westwind.RazorHosting.RazorTemplateFolderHost<TfsLamp.HtmlRendering.ViewModel.ChangesViewModel>
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <link href="//cdnjs.cloudflare.com/ajax/libs/normalize/2.1.0/normalize.css" rel="stylesheet"/>
+        <title>@Model.Title</title>
+        <style>
+            body {
+                background-color: rgb(219, 217, 210);
+                color: rgb(71, 71, 71);
+                font-family: Helvetica, Arial, sans-serif;
+                font-size: 15px;
+                padding: 15px;
+            }
+            h1 {
+                font-family: Helvetica, Arial, sans-serif;
+                font-size: 24px;
+                color: #0274bd;
+            }
+            h2 {
+                font-family: Helvetica, Arial, sans-serif;
+                font-size: 18px;
+                color: #0274bd;
+            }
+            a {
+                color: #0274bd;
+                font-size: 13px;
+                text-decoration: none;
+            }
+            ul {
+                padding-left: 15px;
+                list-style-type: none;
+            }
+            ul#workItems li{
+                padding-top: 3px;
+            }
+            ul.workItems{
+                list-style-type: none;
+                border-left: dotted 1px dodgerblue;
+            }
+            ul.workItems li {
+                padding-top: 3px;
+            }
+            ul.workItemChangesets{
+                list-style-type: circle;
+                list-style-position: inside;
+                border-left: dotted 1px dodgerblue;
+            }
+            ul.changesets li
+            {
+                padding-top: 3px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>@Model.Title</h1>
+        <h2>Work Items</h2>
+        <ul id="workItems">
+            @foreach (var pbi in Model.RootWorkItemViewModels){
+                @RenderPartial("~/WorkItem.cshtml", pbi)
+            }
+            <li><span>Changeset not related to a work item</span></li>
+            <li><ul class="workItemChangesets"><li>
+                @foreach (var changeset in Model.OrphanChangesets)
+                {
+                    <a href="#changeset@(changeset.Id)">@changeset.Id</a>
+                }</li>
+            </ul></li>
+        </ul>
+        <h2>Changesets</h2>
+        <ul class="changesets">
+            @foreach (var changeset in Model.AllChangesets){
+                <li id="changeset@(changeset.Id)">
+                    <a href="@changeset.Url">@changeset.Id</a>
+                    <span>@changeset.Description</span>
+                </li>
+            }
+        </ul>
+    </body>
+</html>

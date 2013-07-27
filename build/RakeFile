@@ -1,0 +1,33 @@
+require 'albacore'
+require 'fileutils'
+
+ROOT_DIR = "#{File.expand_path(File.dirname(__FILE__))}/.."
+PRODUCT_SOLUTION_PATH = "#{ROOT_DIR}/src/TfsLamp.sln"
+BIN_DIR = "#{ROOT_DIR}/bin/"
+
+task :default => :copy_binaries
+
+task :clean_up do
+	puts BIN_DIR
+  	FileUtils.rm_rf BIN_DIR
+end
+
+msbuild :build => :clean_up do |msb|
+  msb.properties = { :configuration => :Release, :platform => 'Mixed Platforms' }
+  msb.targets = [ :Rebuild ]
+  msb.solution = PRODUCT_SOLUTION_PATH
+end
+
+mspec :run_tests => :build do |test|
+	test.log_level = :verbose
+	test.command = "#{ROOT_DIR}/src/packages/Machine.Specifications.0.5.12/tools/mspec-x86-clr4.exe"
+	test.assemblies(Dir.glob("#{ROOT_DIR}/src/**/bin/Release/*.Tests.dll"))
+end
+
+task :copy_binaries => :run_tests do 
+  FileUtils.mkdir BIN_DIR
+  FileUtils.cp_r(Dir["#{ROOT_DIR}/src/TfsLamp.Console/bin/Release/*"],BIN_DIR)
+  FileUtils.rm(Dir.glob("#{BIN_DIR}/*vshost*"))
+  FileUtils.rm(Dir.glob("#{BIN_DIR}/*.xml"))
+  FileUtils.rm(Dir.glob("#{BIN_DIR}/*.pdb"))
+end
