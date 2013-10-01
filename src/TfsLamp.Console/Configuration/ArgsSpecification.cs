@@ -33,13 +33,14 @@ namespace TfsLamp.Console.Configuration
 
         public bool IsChangesetRange() {  return !string.IsNullOrEmpty(FromBranch) && FromChangeset != null && ToChangeset != null; }
         public bool IsMerge() {  return !string.IsNullOrEmpty(FromBranch) && !string.IsNullOrEmpty(ToBranch); }
+        public bool IsAlreadyMerged() { return !string.IsNullOrEmpty(FromBranch) && !string.IsNullOrEmpty(ToBranch) && ToChangeset != null; }
 
         public void Validate()
         {
-            if (!IsChangesetRange() && !IsMerge())
+            if (!IsChangesetRange() && !IsMerge() && !IsAlreadyMerged())
                 throw new ConfigurationException("Please supply either a valid source and target branch, or valid from and to changesets on a branch");
 
-            if (IsChangesetRange() && IsMerge())
+            if (IsChangesetRange() && IsMerge() && IsAlreadyMerged())
                 throw new ConfigurationException("Please supply either a valid source and target branch, OR valid from and to changesets on a branch. Please do not specify both, they are mutually exclusive.");
         }
     }

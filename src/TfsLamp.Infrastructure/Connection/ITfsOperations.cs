@@ -9,5 +9,6 @@ namespace TfsLamp.Infrastructure.Connection
         TfsWorkItem GetWorkItem(int id);
         IEnumerable<TfsChangeset> GetMergeCandidates(string sourceBranchName, string targetBranchName);
         IEnumerable<TfsChangeset> GetChangesets(string sourceBranchName, int firstId, int lastId);
+        IEnumerable<TfsChangeset> GetChangesetsInMergedChangeset(string sourceBranchName, string targetBranchName, int mergeChangesetId);
     }
 }

@@ -41,11 +41,20 @@ namespace TfsLamp.Console
         public static IContainer InitializeApplicationComponents(ArgsSpecification parsedArgs)
         {
             var builder = new ContainerBuilder();
+            builder.RegisterModule(new CommonRegistrar(parsedArgs.Server, parsedArgs.Username, parsedArgs.Password));
 
             if (parsedArgs.IsMerge())
-                builder.RegisterModule(new Registrar(parsedArgs.Server, parsedArgs.Username, parsedArgs.Password, parsedArgs.FromBranch, parsedArgs.ToBranch));
+            {
+                builder.RegisterModule(new PotentialMergeRegistrar(parsedArgs.FromBranch, parsedArgs.ToBranch));
+            }
+            if (parsedArgs.IsAlreadyMerged())
+            {
+                builder.RegisterModule(new MergedChangesetsRegistrar(parsedArgs.FromBranch, parsedArgs.ToBranch, (int)parsedArgs.FromChangeset));
+            }
             if (parsedArgs.IsChangesetRange())
-                builder.RegisterModule(new Registrar(parsedArgs.Server, parsedArgs.Username, parsedArgs.Password, parsedArgs.FromBranch, (int)parsedArgs.FromChangeset, (int)parsedArgs.ToChangeset));
+            {
+                builder.RegisterModule(new ChangesetRangeRegistrar(parsedArgs.FromBranch, (int)parsedArgs.FromChangeset, (int)parsedArgs.ToChangeset));
+            }
 
             builder.RegisterModule(new HtmlRenderingRegistrar());
 

@@ -64,6 +64,12 @@ namespace TfsLamp.Infrastructure.Connection
                                                false).Cast<Changeset>().Select(MapChangeset);
         }
 
+        public IEnumerable<TfsChangeset> GetChangesetsInMergedChangeset(string sourceBranchName, string targetBranchName, int mergeChangesetId)
+        {
+            var merges = VersionControl.TrackMerges(new[] { mergeChangesetId }, new ItemIdentifier(targetBranchName), new[] { new ItemIdentifier(sourceBranchName) }, null);
+            return merges.Select(m => VersionControl.GetChangeset(m.SourceChangeset.ChangesetId)).Select(MapChangeset);
+        }
+
         protected virtual TfsChangeset MapChangeset(Changeset changeset)
         {
             return new TfsChangeset

@@ -99,5 +99,10 @@ namespace TfsLamp.Infrastructure.Tests.Connection
         {
             return _allChangesets.Values;
         }
+
+        public IEnumerable<TfsChangeset> GetChangesetsInMergedChangeset(string sourceBranchName, string targetBranchName, int mergeChangesetId)
+        {
+            return _allChangesets.Values;
+        }
     }
 }
