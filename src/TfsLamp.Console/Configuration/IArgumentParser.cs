@@ -1,7 +1,9 @@
-﻿namespace TfsLamp.Console.Configuration
+﻿using System;
+
+namespace TfsLamp.Console.Configuration
 {
     public interface IArgumentParser
     {
-        ArgsSpecification ParseArguments(string[] args);
+        object ParseArguments(Type argsType, string[] args);
     }
 }

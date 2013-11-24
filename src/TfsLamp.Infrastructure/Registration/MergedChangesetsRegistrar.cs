@@ -18,7 +18,7 @@ namespace TfsLamp.Infrastructure.Registration
             if (_changesetRangeConfig != null)
             {
                 builder.RegisterInstance(_changesetRangeConfig).As<ITfsMergedChangesetConfig>();
-                builder.RegisterType<ChangesetRangeChangesetRetiever>().As<IChangesetRetriever>();
+                builder.RegisterType<MergedChangesetRetiever>().As<IChangesetRetriever>();
             }
         }
     }

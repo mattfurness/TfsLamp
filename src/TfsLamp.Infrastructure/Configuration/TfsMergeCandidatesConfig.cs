@@ -1,11 +1,11 @@
 ﻿namespace TfsLamp.Infrastructure.Configuration
 {
-    public class TfsMergeConfig : ITfsMergeConfig
+    public class TfsMergeCandidatesConfig : ITfsMergeCandidatesConfig
     {
         private readonly string _fromBranch;
         private readonly string _toBranch;
 
-        public TfsMergeConfig(string toBranch, string fromBranch)
+        public TfsMergeCandidatesConfig(string toBranch, string fromBranch)
         {
             _toBranch = toBranch;
             _fromBranch = fromBranch;

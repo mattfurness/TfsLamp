@@ -5,18 +5,18 @@ using TfsLamp.Infrastructure.Connection;
 
 namespace TfsLamp.Infrastructure.Registration
 {
-    public class PotentialMergeRegistrar : Module
+    public class MergeCAndidatesRegistrar : Module
     {
-        private readonly ITfsMergeConfig _mergeConfig;
+        private readonly ITfsMergeCandidatesConfig _mergeCandidatesConfig;
 
-        public PotentialMergeRegistrar(string fromBranch, string toBranch)
+        public MergeCAndidatesRegistrar(string fromBranch, string toBranch)
         {
-            _mergeConfig = new TfsMergeConfig(toBranch, fromBranch);
+            _mergeCandidatesConfig = new TfsMergeCandidatesConfig(toBranch, fromBranch);
         }
 
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterInstance(_mergeConfig).As<ITfsMergeConfig>();
+            builder.RegisterInstance(_mergeCandidatesConfig).As<ITfsMergeCandidatesConfig>();
             builder.RegisterType<MergeChangesetRetriever>().As<IChangesetRetriever>();
         }
     }

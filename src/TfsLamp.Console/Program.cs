@@ -17,11 +17,13 @@ namespace TfsLamp.Console
             builder.RegisterModule(new ConsoleRegistration());
 
             var consoleContainer = builder.Build();
-            ArgsSpecification parsedArgs = null;
 
             try
             {
-                parsedArgs = consoleContainer.Resolve<IArgumentParser>().ParseArguments(args);
+                var argumentParser = consoleContainer.Resolve<IArgumentParser>();
+                var modeArgs = argumentParser.ParseArguments(typeof(ModeArgs), args.GetOnlyTheModeArgument()) as ModeArgs;
+                var mode = ArgsTypeForModeProvider.GetArgsFormMode(modeArgs.Mode);
+                var parsedArgs = argumentParser.ParseArguments(mode, args.StripTheModeArgument()) as StandardArgs;
 
                 var appContainer = InitializeApplicationComponents(parsedArgs);
 
@@ -38,23 +40,12 @@ namespace TfsLamp.Console
             }
         }
 
-        public static IContainer InitializeApplicationComponents(ArgsSpecification parsedArgs)
+        private static IContainer InitializeApplicationComponents(StandardArgs parsedArgs)
         {
             var builder = new ContainerBuilder();
             builder.RegisterModule(new CommonRegistrar(parsedArgs.Server, parsedArgs.Username, parsedArgs.Password));
 
-            if (parsedArgs.IsMerge())
-            {
-                builder.RegisterModule(new PotentialMergeRegistrar(parsedArgs.FromBranch, parsedArgs.ToBranch));
-            }
-            if (parsedArgs.IsAlreadyMerged())
-            {
-                builder.RegisterModule(new MergedChangesetsRegistrar(parsedArgs.FromBranch, parsedArgs.ToBranch, (int)parsedArgs.FromChangeset));
-            }
-            if (parsedArgs.IsChangesetRange())
-            {
-                builder.RegisterModule(new ChangesetRangeRegistrar(parsedArgs.FromBranch, (int)parsedArgs.FromChangeset, (int)parsedArgs.ToChangeset));
-            }
+            builder.RegisterModule(parsedArgs.GetRegistrar());
 
             builder.RegisterModule(new HtmlRenderingRegistrar());
 
@@ -62,7 +53,7 @@ namespace TfsLamp.Console
             return container;
         }
 
-        public static void GenerateResults(IRenderer renderer, IWorkItemPopulator populator, IChangesetRetriever retriever, string outputFileName)
+        private static void GenerateResults(IRenderer renderer, IWorkItemPopulator populator, IChangesetRetriever retriever, string outputFileName)
         {
             var tfsChangesets = retriever.GetChangesets();
             var allRelevantWorkItems = populator.GetAssociatedWorkItemsForChangesets(tfsChangesets);

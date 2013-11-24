@@ -7,17 +7,17 @@ namespace TfsLamp.Infrastructure.ChangeInfo
     public class MergeChangesetRetriever : IChangesetRetriever
     {
         private readonly ITfsOperations _operations;
-        private readonly ITfsMergeConfig _mergeConfig;
+        private readonly ITfsMergeCandidatesConfig _mergeCandidatesConfig;
 
-        public MergeChangesetRetriever(ITfsOperations operations, ITfsMergeConfig mergeConfig)
+        public MergeChangesetRetriever(ITfsOperations operations, ITfsMergeCandidatesConfig mergeCandidatesConfig)
         {
             _operations = operations;
-            _mergeConfig = mergeConfig;
+            _mergeCandidatesConfig = mergeCandidatesConfig;
         }
 
         public IEnumerable<TfsChangeset> GetChangesets()
         {
-            return _operations.GetMergeCandidates(_mergeConfig.FromBranch, _mergeConfig.ToBranch);
+            return _operations.GetMergeCandidates(_mergeCandidatesConfig.FromBranch, _mergeCandidatesConfig.ToBranch);
         }
     }
 }

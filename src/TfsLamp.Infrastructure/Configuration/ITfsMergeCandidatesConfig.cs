@@ -1,6 +1,6 @@
 ﻿namespace TfsLamp.Infrastructure.Configuration
 {
-    public interface ITfsMergeConfig
+    public interface ITfsMergeCandidatesConfig
     {
         string FromBranch { get; }
         string ToBranch { get; }

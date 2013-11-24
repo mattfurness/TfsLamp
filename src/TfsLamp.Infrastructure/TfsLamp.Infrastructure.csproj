@@ -59,10 +59,10 @@
     <Compile Include="Configuration\ConfigurationException.cs" />
     <Compile Include="Configuration\ITfsChangesetRangeConfig.cs" />
     <Compile Include="Configuration\ITfsConnectionConfig.cs" />
-    <Compile Include="Configuration\ITfsMergeConfig.cs" />
+    <Compile Include="Configuration\ITfsMergeCandidatesConfig.cs" />
     <Compile Include="Configuration\ITfsMergedChangesetConfig.cs" />
     <Compile Include="Configuration\TfsChangesetRangeConfig.cs" />
-    <Compile Include="Configuration\TfsMergeConfig.cs" />
+    <Compile Include="Configuration\TfsMergeCandidatesConfig.cs" />
     <Compile Include="Configuration\TfsMergeInformationConfig.cs" />
     <Compile Include="Connection\ITfsOperations.cs" />
     <Compile Include="Connection\TfsChangeset.cs" />
@@ -80,7 +80,7 @@
     <Compile Include="Registration\ChangesetRangeRegistrar.cs" />
     <Compile Include="Registration\CommonRegistrar.cs" />
     <Compile Include="Registration\MergedChangesetsRegistrar.cs" />
-    <Compile Include="Registration\PotentialMergeRegistrar.cs" />
+    <Compile Include="Registration\MergeCAndidatesRegistrar.cs" />
     <Compile Include="Rendering\IRenderer.cs" />
     <Compile Include="Rendering\RenderException.cs" />
   </ItemGroup>

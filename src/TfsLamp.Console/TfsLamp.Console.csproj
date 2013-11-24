@@ -55,8 +55,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\ArgsSpecification.cs" />
+    <Compile Include="Configuration\ArgsTypeForModeProvider.cs" />
+    <Compile Include="Configuration\StandardArgs.cs" />
+    <Compile Include="Configuration\ChangesetRangeArgs.cs" />
     <Compile Include="Configuration\IArgumentParser.cs" />
+    <Compile Include="Configuration\MergeCandidatesArgs.cs" />
+    <Compile Include="Configuration\MergedChangesetsArgs.cs" />
+    <Compile Include="Configuration\Mode.cs" />
+    <Compile Include="Configuration\ModeArgs.cs" />
     <Compile Include="Configuration\PowerArgsArgumentParser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
