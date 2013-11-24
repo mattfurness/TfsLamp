@@ -15,7 +15,7 @@ namespace TfsLamp.Console.Configuration
         [ArgRequired(PromptIfMissing = false)]
         public string ToBranch { get; set; }
         [ArgShortcut("c")]
-        [ArgDescription("The to or latest / highest changeset.")]
+        [ArgDescription("The merge changeset.")]
         [ArgRequired(PromptIfMissing = false)]
         public int Changeset { get; set; }
 

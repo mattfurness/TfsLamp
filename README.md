@@ -8,29 +8,60 @@ TFS Lamp tries to "shed a bit of light" on things, because I found that I wanted
 
 If you find any bugs or have suggestions, add them as issues in github. Feel free to send pull requests etc. 
 
-## Usage ##
+## Merge Candidate Usage ##
 
 | OPTION | TYPE | DESCRIPTION |
 | ------ | ---- | ----------- |
+| -mode(-m) | Mode | In this case specify "MergeCandidates" |
+| -server(-s) | string | The TFS server to connect to. |
+| -username(-u) | string | The username to use when connecting to the TFS server. |
+| -password(-p) | string | The password to use when connecting to the TFS server. |
+| -outputfile(-o) | string | The full path and file name of the output file to generate. If it exists it will be overwriten. |
+| -frombranch(-fb) | string | The from or source branch. |
+| -tobranch(-tb) | string | The to or target branch. |
+
+## Changeset Range Usage ##
+
+| OPTION | TYPE | DESCRIPTION |
+| ------ | ---- | ----------- |
+| -mode(-m) | Mode | In this case specify "ChangesetRange" |
+| -server(-s) | string* | The TFS server to connect to. |
+| -username(-u) |string* | The username to use when connecting to the TFS server. |
+| -password(-p) |string* | The password to use when connecting to the TFS server. |
+| -outputfile(-o) |string* | The full path and file name of the output file to generate. If it exists it will be overwriten. |
+| -branch(-b) |string | The source branch. |
+| -fromchangeset(-fc) | int | The from or earliest / lowest changeset. |
+| -tochangeset(-tc) | int | The to or latest / highest changeset. |
+
+## Merged Changeset Usage ##
+
+| OPTION | TYPE | DESCRIPTION |
+| ------ | ---- | ----------- |
+| -mode(-m) | Mode | In this case specify "MergedChangeset" |
 | -server(-s) | string* | The TFS server to connect to. |
 | -username(-u) |string* | The username to use when connecting to the TFS server. |
 | -password(-p) |string* | The password to use when connecting to the TFS server. |
 | -outputfile(-o) |string* | The full path and file name of the output file to generate. If it exists it will be overwriten. |
 | -frombranch(-fb) |string | The from or source branch. If using fromchangeset and tochangeset use this argument to specify the branch to use. |
 | -tobranch(-tb) |string | The to or target branch. |
-| -fromchangeset(-fc) | int | The from or earliest / lowest changeset. |
-| -tochangeset(-tc) | int | The to or latest / highest changeset. |
+| -changeset(-c) | int | The merge changeset. |
 
-## Example of differences between branches range ##
+## Example usage of Merge Candidates ##
 
 ```
-TfsLamp -server http://myserver:8080/tfs/dev -username mydomain\user -password mypassword -fb "$/My Project Collection/branches/SourceBranch" -tb "$/My Project Collection/branches/SourceBranch" -outputfile C:\temp\output.html
+TfsLamp -mode "MergeCandidates" -server http://myserver:8080/tfs/dev -username mydomain\user -password mypassword -fb "$/My Project Collection/branches/SourceBranch" -tb "$/My Project Collection/branches/SourceBranch" -outputfile C:\temp\output.html
 ```
 
 ## Example of changeset range ##
 
 ```
-TfsLamp -server http://myserver:8080/tfs/dev -username mydomain\user -password mypassword -fb "$/My Project Collection/branches/SomeBranch" -fc 8963 -tc 9914 -o C:\temp\output.html
+TfsLamp -m "ChangesetRange" -server http://myserver:8080/tfs/dev -username mydomain\user -password mypassword -b "$/My Project Collection/branches/SomeBranch" -fc 8963 -tc 9914 -o C:\temp\output.html
+```
+
+## Example of merged changeset ##
+
+```
+TfsLamp -m "MergedChangeset" -server http://myserver:8080/tfs/dev -username mydomain\user -password mypassword -fb "$/My Project Collection/branches/SourceBranch" -tb "$/My Project Collection/branches/SourceBranch" -c 9914 -o C:\temp\output.html
 ```
 
 ## Thanks ##
