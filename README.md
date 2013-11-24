@@ -16,39 +16,39 @@ Please note that the -mode option is always mandatory, and MUST be the first arg
 
 | OPTION | TYPE | DESCRIPTION |
 | ------ | ---- | ----------- |
-| -mode(-m) | Mode | In this case specify "MergeCandidates" |
-| -server(-s) | string | The TFS server to connect to. |
-| -username(-u) | string | The username to use when connecting to the TFS server. |
-| -password(-p) | string | The password to use when connecting to the TFS server. |
-| -outputfile(-o) | string | The full path and file name of the output file to generate. If it exists it will be overwriten. |
-| -frombranch(-fb) | string | The from or source branch. |
-| -tobranch(-tb) | string | The to or target branch. |
+| -mode (-m) | Mode | In this case specify "MergeCandidates" |
+| -server (-s) | string | The TFS server to connect to. |
+| -username (-u) | string | The username to use when connecting to the TFS server. |
+| -password (-p) | string | The password to use when connecting to the TFS server. |
+| -outputfile (-o) | string | The full path and file name of the output file to generate. If it exists it will be overwriten. |
+| -frombranch (-fb) | string | The from or source branch. |
+| -tobranch (-tb) | string | The to or target branch. |
 
 ## Changeset Range Usage ##
 
 | OPTION | TYPE | DESCRIPTION |
 | ------ | ---- | ----------- |
-| -mode(-m) | Mode | In this case specify "ChangesetRange" |
-| -server(-s) | string | The TFS server to connect to. |
-| -username(-u) |string | The username to use when connecting to the TFS server. |
-| -password(-p) |string | The password to use when connecting to the TFS server. |
-| -outputfile(-o) |string | The full path and file name of the output file to generate. If it exists it will be overwriten. |
-| -branch(-b) |string | The source branch. |
-| -fromchangeset(-fc) | int | The from or earliest / lowest changeset. |
-| -tochangeset(-tc) | int | The to or latest / highest changeset. |
+| -mode (-m) | Mode | In this case specify "ChangesetRange" |
+| -server (-s) | string | The TFS server to connect to. |
+| -username (-u) |string | The username to use when connecting to the TFS server. |
+| -password (-p) |string | The password to use when connecting to the TFS server. |
+| -outputfile (-o) |string | The full path and file name of the output file to generate. If it exists it will be overwriten. |
+| -branch (-b) |string | The source branch. |
+| -fromchangeset (-fc) | int | The from or earliest / lowest changeset. |
+| -tochangeset (-tc) | int | The to or latest / highest changeset. |
 
 ## Merged Changeset Usage ##
 
 | OPTION | TYPE | DESCRIPTION |
 | ------ | ---- | ----------- |
-| -mode(-m) | Mode | In this case specify "MergedChangeset" |
-| -server(-s) | string | The TFS server to connect to. |
-| -username(-u) |string | The username to use when connecting to the TFS server. |
-| -password(-p) |string | The password to use when connecting to the TFS server. |
-| -outputfile(-o) |string | The full path and file name of the output file to generate. If it exists it will be overwriten. |
-| -frombranch(-fb) |string | The from or source branch. If using fromchangeset and tochangeset use this argument to specify the branch to use. |
-| -tobranch(-tb) |string | The to or target branch. |
-| -changeset(-c) | int | The merge changeset. |
+| -mode (-m) | Mode | In this case specify "MergedChangeset" |
+| -server (-s) | string | The TFS server to connect to. |
+| -username (-u) |string | The username to use when connecting to the TFS server. |
+| -password (-p) |string | The password to use when connecting to the TFS server. |
+| -outputfile (-o) |string | The full path and file name of the output file to generate. If it exists it will be overwriten. |
+| -frombranch (-fb) |string | The from or source branch. If using fromchangeset and tochangeset use this argument to specify the branch to use. |
+| -tobranch (-tb) |string | The to or target branch. |
+| -changeset (-c) | int | The merge changeset. |
 
 ## Example usage of Merge Candidates ##
 
