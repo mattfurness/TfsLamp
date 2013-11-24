@@ -20,7 +20,7 @@ end
 
 mspec :run_tests => :build do |test|
 	test.log_level = :verbose
-	test.command = "#{ROOT_DIR}/src/packages/Machine.Specifications.0.5.12/tools/mspec-x86-clr4.exe"
+	test.command = "#{ROOT_DIR}/src/packages/Machine.Specifications.0.5.16/tools/mspec-x86-clr4.exe"
 	test.assemblies(Dir.glob("#{ROOT_DIR}/src/**/bin/Release/*.Tests.dll"))
 end
 
