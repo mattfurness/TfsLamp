@@ -8,6 +8,10 @@ TFS Lamp tries to "shed a bit of light" on things, because I found that I wanted
 
 If you find any bugs or have suggestions, add them as issues in github. Feel free to send pull requests etc. 
 
+## General Usage Notes ##
+
+Please note that the -mode option is always mandatory, and MUST be the first argument. This restriction will be rectified in the future.
+
 ## Merge Candidate Usage ##
 
 | OPTION | TYPE | DESCRIPTION |
@@ -25,10 +29,10 @@ If you find any bugs or have suggestions, add them as issues in github. Feel fre
 | OPTION | TYPE | DESCRIPTION |
 | ------ | ---- | ----------- |
 | -mode(-m) | Mode | In this case specify "ChangesetRange" |
-| -server(-s) | string* | The TFS server to connect to. |
-| -username(-u) |string* | The username to use when connecting to the TFS server. |
-| -password(-p) |string* | The password to use when connecting to the TFS server. |
-| -outputfile(-o) |string* | The full path and file name of the output file to generate. If it exists it will be overwriten. |
+| -server(-s) | string | The TFS server to connect to. |
+| -username(-u) |string | The username to use when connecting to the TFS server. |
+| -password(-p) |string | The password to use when connecting to the TFS server. |
+| -outputfile(-o) |string | The full path and file name of the output file to generate. If it exists it will be overwriten. |
 | -branch(-b) |string | The source branch. |
 | -fromchangeset(-fc) | int | The from or earliest / lowest changeset. |
 | -tochangeset(-tc) | int | The to or latest / highest changeset. |
@@ -38,10 +42,10 @@ If you find any bugs or have suggestions, add them as issues in github. Feel fre
 | OPTION | TYPE | DESCRIPTION |
 | ------ | ---- | ----------- |
 | -mode(-m) | Mode | In this case specify "MergedChangeset" |
-| -server(-s) | string* | The TFS server to connect to. |
-| -username(-u) |string* | The username to use when connecting to the TFS server. |
-| -password(-p) |string* | The password to use when connecting to the TFS server. |
-| -outputfile(-o) |string* | The full path and file name of the output file to generate. If it exists it will be overwriten. |
+| -server(-s) | string | The TFS server to connect to. |
+| -username(-u) |string | The username to use when connecting to the TFS server. |
+| -password(-p) |string | The password to use when connecting to the TFS server. |
+| -outputfile(-o) |string | The full path and file name of the output file to generate. If it exists it will be overwriten. |
 | -frombranch(-fb) |string | The from or source branch. If using fromchangeset and tochangeset use this argument to specify the branch to use. |
 | -tobranch(-tb) |string | The to or target branch. |
 | -changeset(-c) | int | The merge changeset. |
